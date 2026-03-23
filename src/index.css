@@ -1,0 +1,234 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/900.css";
+
+/* ── Tailwind v4 : dark mode via classe .dark sur <html> ───────────────────── */
+/* Sans cette ligne, dark: ne fonctionne qu'avec prefers-color-scheme          */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ─────────────────────────────────────────────────────────── */
+:root {
+  /* 🟡 Jaune doré du logo */
+  --accent: #F5B800;
+  --accent-glow: #FFD04D;
+  --accent-dim: #D49E00;
+  /* 🌑 Bleu marine du logo */
+  --navy: #0f1629;
+  --navy-2: #1a2340;
+
+  font-family: 'Inter', system-ui, sans-serif;
+  scroll-behavior: smooth;
+  color-scheme: dark light;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-white text-[#0f1629] antialiased;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark body {
+  background-color: #080c18;
+  color: #e8eaf0;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 184, 0, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 184, 0, 0.7);
+}
+
+/* ── Gradient text ─────────────────────────────────────────────────────────── */
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(135deg, #F5B800 0%, #FFD04D 50%, #FFED99 100%);
+}
+
+/* ── Glass card ────────────────────────────────────────────────────────────── */
+.glass {
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  background: rgba(255 255 255 / 0.07);
+  border: 1px solid rgba(245, 184, 0, 0.15);
+}
+
+.dark .glass {
+  background: rgba(10, 14, 32, 0.65);
+  border-color: rgba(245, 184, 0, 0.12);
+}
+
+/* ── Section fade-in animation ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  animation: fadeUp 0.6s ease both;
+}
+
+.delay-100 {
+  animation-delay: 0.10s;
+}
+
+.delay-200 {
+  animation-delay: 0.20s;
+}
+
+.delay-300 {
+  animation-delay: 0.30s;
+}
+
+.delay-400 {
+  animation-delay: 0.40s;
+}
+
+/* ── Floating blobs (decorative) ───────────────────────────────────────────── */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+
+  50% {
+    transform: translateY(-18px) scale(1.04);
+  }
+}
+
+.blob {
+  animation: float 8s ease-in-out infinite;
+  filter: blur(70px);
+  border-radius: 50%;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* ── Button styles ─────────────────────────────────────────────────────────── */
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold;
+  background-color: #F5B800;
+  color: #0f1629;
+  box-shadow: 0 4px 24px rgba(245, 184, 0, 0.35);
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #FFD04D;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(245, 184, 0, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-200 hover:-translate-y-0.5;
+  border: 1.5px solid rgba(245, 184, 0, 0.35);
+  color: currentColor;
+}
+
+.btn-ghost:hover {
+  border-color: #F5B800;
+  background: rgba(245, 184, 0, 0.08);
+}
+
+/* ── Cards ─────────────────────────────────────────────────────────────────── */
+.card {
+  @apply rounded-2xl bg-white dark:bg-[#111527] transition-all duration-300 hover:-translate-y-1;
+  border: 1px solid rgba(245, 184, 0, 0.12);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.card:hover {
+  box-shadow: 0 8px 32px rgba(245, 184, 0, 0.12);
+  border-color: rgba(245, 184, 0, 0.35);
+}
+
+/* ── Section headings ──────────────────────────────────────────────────────── */
+.section-label {
+  @apply text-xs font-bold uppercase tracking-widest mb-2;
+  color: #F5B800;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold mb-4;
+}
+
+/* ── Nav link ──────────────────────────────────────────────────────────────── */
+.nav-link {
+  @apply text-sm font-medium transition-colors duration-150 relative;
+  /* Mode clair : gris marine lisible ; mode sombre : gris clair */
+  color: rgba(15, 22, 41, 0.70);
+}
+
+.dark .nav-link {
+  color: rgba(232, 234, 240, 0.70);
+}
+
+.nav-link:hover,
+.dark .nav-link:hover {
+  color: #F5B800;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute -bottom-0.5 left-0 h-0.5 w-0 rounded-full transition-all duration-200;
+  background: #F5B800;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+
+
+
+/* ── Language badge ────────────────────────────────────────────────────────── */
+.lang-badge {
+  @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium;
+  background: rgba(245, 184, 0, 0.15);
+  color: #c49100;
+}
+
+.dark .lang-badge {
+  background: rgba(245, 184, 0, 0.12);
+  color: #F5B800;
+}
+
+/* ── Accent ring (focus) ───────────────────────────────────────────────────── */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(245, 184, 0, 0.4) !important;
+}
