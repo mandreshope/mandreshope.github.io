@@ -36,7 +36,7 @@ jobs:
         run: npm run build
         env:
           # Set this to /portfolio/ (or whatever your repo name is)
-          BASE_PATH: /portfolio/
+          BASE_PATH: /
           # Optional: add VITE_GITHUB_TOKEN as a repo secret for higher API rate limits
           VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
 
