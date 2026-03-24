@@ -16,6 +16,7 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
     const { t, i18n } = useTranslation()
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
+    const [activeSection, setActiveSection] = useState('home')
 
     const NAV_LINKS = [
         { label: t('nav.home'), href: '#home' },
@@ -26,8 +27,29 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
     ]
 
     useEffect(() => {
-        const handler = () => setScrolled(window.scrollY > 20)
+        const handler = () => {
+            setScrolled(window.scrollY > 20)
+
+            const sections = ['home', 'projects', 'skills', 'services', 'contact']
+            const scrollPosition = window.scrollY + window.innerHeight / 3
+
+            let current = ''
+            for (const section of sections) {
+                const element = document.getElementById(section)
+                if (element) {
+                    const top = element.offsetTop
+                    const height = element.offsetHeight
+                    if (scrollPosition >= top && scrollPosition < top + height) {
+                        current = section
+                    }
+                }
+            }
+            if (current) {
+                setActiveSection(current)
+            }
+        }
         window.addEventListener('scroll', handler, { passive: true })
+        handler() // Initialize
         return () => window.removeEventListener('scroll', handler)
     }, [])
 
@@ -59,11 +81,17 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
 
                 {/* Desktop links */}
                 <ul className="hidden md:flex items-center gap-7">
-                    {NAV_LINKS.map((l) => (
-                        <li key={l.href}>
-                            <a href={l.href} className="nav-link">{l.label}</a>
-                        </li>
-                    ))}
+                    {NAV_LINKS.map((l) => {
+                        const sectionId = l.href.substring(1)
+                        const isActive = activeSection === sectionId
+                        return (
+                            <li key={l.href}>
+                                <a href={l.href} className={`nav-link ${isActive ? 'active' : ''}`}>
+                                    {l.label}
+                                </a>
+                            </li>
+                        )
+                    })}
                 </ul>
 
                 {/* Right controls */}
@@ -113,17 +141,23 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
           backdrop-blur-md
           border-t border-[#F5B800]/10
         ">
-                    {NAV_LINKS.map((l) => (
-                        <li key={l.href}>
-                            <a
-                                href={l.href}
-                                onClick={closeMenu}
-                                className="block py-2.5 text-sm font-medium hover:text-[#F5B800] transition-colors"
-                            >
-                                {l.label}
-                            </a>
-                        </li>
-                    ))}
+                    {NAV_LINKS.map((l) => {
+                        const sectionId = l.href.substring(1)
+                        const isActive = activeSection === sectionId
+                        return (
+                            <li key={l.href}>
+                                <a
+                                    href={l.href}
+                                    onClick={closeMenu}
+                                    className={`block py-2.5 text-sm font-medium transition-colors ${
+                                        isActive ? 'text-[#F5B800]' : 'hover:text-[#F5B800]'
+                                    }`}
+                                >
+                                    {l.label}
+                                </a>
+                            </li>
+                        )
+                    })}
                 </ul>
             </div>
         </header>

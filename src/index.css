@@ -196,7 +196,9 @@ body {
 }
 
 .nav-link:hover,
-.dark .nav-link:hover {
+.dark .nav-link:hover,
+.nav-link.active,
+.dark .nav-link.active {
   color: #F5B800;
 }
 
@@ -206,7 +208,8 @@ body {
   background: #F5B800;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }
 
