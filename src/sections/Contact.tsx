@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Mail, Github, Linkedin, Copy, Check, Send } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { SITE_CONFIG } from '../config'
 import { WhatsAppIcon } from '../components/WhatsAppIcon'
 
 export default function Contact() {
+    const { t } = useTranslation()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
@@ -48,14 +50,13 @@ export default function Contact() {
             <div className="max-w-5xl mx-auto">
                 {/* Heading */}
                 <div className="text-center mb-14">
-                    <p className="section-label">Get in touch</p>
+                    <p className="section-label">{t('contact.label')}</p>
                     <h2 className="section-title">
-                        Let&apos;s{' '}
-                        <span className="gradient-text">Work Together</span>
+                        {t('contact.title_start')}{' '}
+                        <span className="gradient-text">{t('contact.title_span')}</span>
                     </h2>
                     <p className="text-slate-500 dark:text-slate-400 max-w-lg mx-auto text-sm">
-                        Have a project in mind or just want to say hello? Fill out the form
-                        below — it opens your email client with everything pre-filled.
+                        {t('contact.desc')}
                     </p>
                 </div>
 
@@ -67,7 +68,7 @@ export default function Contact() {
                                 <Mail size={18} className="text-indigo-500" />
                             </div>
                             <div className="min-w-0">
-                                <p className="text-xs text-slate-500 mb-0.5">Email</p>
+                                <p className="text-xs text-slate-500 mb-0.5">{t('contact.email')}</p>
                                 <button
                                     onClick={copyEmail}
                                     className="text-sm font-medium text-slate-700 dark:text-slate-200 flex items-center gap-2 hover:text-indigo-500 transition-colors"
@@ -96,7 +97,7 @@ export default function Contact() {
                                 <Github size={18} className="group-hover:text-indigo-500 transition-colors" />
                             </div>
                             <div>
-                                <p className="text-xs text-slate-500 mb-0.5">GitHub</p>
+                                <p className="text-xs text-slate-500 mb-0.5">{t('contact.github')}</p>
                                 <p className="text-sm font-medium group-hover:text-indigo-500 transition-colors">
                                     @{SITE_CONFIG.githubUsername}
                                 </p>
@@ -113,9 +114,9 @@ export default function Contact() {
                                 <Linkedin size={18} className="text-sky-600 group-hover:text-indigo-500 transition-colors" />
                             </div>
                             <div>
-                                <p className="text-xs text-slate-500 mb-0.5">LinkedIn</p>
+                                <p className="text-xs text-slate-500 mb-0.5">{t('contact.linkedin')}</p>
                                 <p className="text-sm font-medium group-hover:text-indigo-500 transition-colors">
-                                    Connect with me
+                                    {t('contact.connect')}
                                 </p>
                             </div>
                         </a>
@@ -130,7 +131,7 @@ export default function Contact() {
                                 <WhatsAppIcon size={18} />
                             </div>
                             <div>
-                                <p className="text-xs text-slate-500 mb-0.5">WhatsApp</p>
+                                <p className="text-xs text-slate-500 mb-0.5">{t('contact.whatsapp')}</p>
                                 <p className="text-sm font-medium group-hover:text-[#25D366] transition-colors">
                                     +261 34 244 2871
                                 </p>
@@ -138,7 +139,7 @@ export default function Contact() {
                         </a>
 
                         <div className="rounded-xl p-4 bg-indigo-50 dark:bg-indigo-900/20 text-sm text-indigo-700 dark:text-indigo-300">
-                            📍 Based in {SITE_CONFIG.location} · Available globally (remote)
+                            📍 {t('contact.based_in', { location: SITE_CONFIG.location })}
                         </div>
                     </aside>
 
@@ -150,13 +151,13 @@ export default function Contact() {
                         <div className="grid sm:grid-cols-2 gap-4">
                             <div>
                                 <label htmlFor="contact-name" className="block text-xs font-medium mb-1.5 text-slate-500">
-                                    Your Name *
+                                    {t('contact.form.name_label')}
                                 </label>
                                 <input
                                     id="contact-name"
                                     type="text"
                                     required
-                                    placeholder="Jane Doe"
+                                    placeholder={t('contact.form.name_ph')}
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     className={inputClass}
@@ -164,13 +165,13 @@ export default function Contact() {
                             </div>
                             <div>
                                 <label htmlFor="contact-email" className="block text-xs font-medium mb-1.5 text-slate-500">
-                                    Your Email *
+                                    {t('contact.form.email_label')}
                                 </label>
                                 <input
                                     id="contact-email"
                                     type="email"
                                     required
-                                    placeholder="jane@example.com"
+                                    placeholder={t('contact.form.email_ph')}
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className={inputClass}
@@ -180,13 +181,13 @@ export default function Contact() {
 
                         <div>
                             <label htmlFor="contact-message" className="block text-xs font-medium mb-1.5 text-slate-500">
-                                Message *
+                                {t('contact.form.msg_label')}
                             </label>
                             <textarea
                                 id="contact-message"
                                 required
                                 rows={6}
-                                placeholder="Tell me about your project…"
+                                placeholder={t('contact.form.msg_ph')}
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 className={inputClass + ' resize-none'}
@@ -195,12 +196,11 @@ export default function Contact() {
 
                         <button type="submit" className="btn-primary self-start">
                             <Send size={15} />
-                            Send via Email
+                            {t('contact.form.btn')}
                         </button>
 
                         <p className="text-xs text-slate-400">
-                            This opens your default email client with the message pre-filled.
-                            No data is stored or sent to any server.
+                            {t('contact.form.note')}
                         </p>
                     </form>
                 </div>

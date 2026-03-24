@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import {
     Star, GitFork, ExternalLink, RefreshCw, Search, Pin, Clock,
 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useGitHubRepos } from '../hooks/useGitHubRepos'
 import { SITE_CONFIG, FEATURED_REPOS } from '../config'
 import type { GitHubRepo } from '../types'
@@ -88,6 +89,7 @@ function RepoCard({ repo }: { repo: GitHubRepo }) {
 }
 
 export default function Projects() {
+    const { t } = useTranslation()
     const { repos, status, error, refetch } = useGitHubRepos(SITE_CONFIG.githubUsername)
     const [search, setSearch] = useState('')
     const [lang, setLang] = useState<string>('all')
@@ -124,13 +126,13 @@ export default function Projects() {
             <div className="max-w-6xl mx-auto">
                 {/* Heading */}
                 <div className="text-center mb-12">
-                    <p className="section-label">Portfolio</p>
+                    <p className="section-label">{t('projects.label')}</p>
                     <h2 className="section-title">
-                        Open Source{' '}
-                        <span className="gradient-text">Projects</span>
+                        {t('projects.title_start')}{' '}
+                        <span className="gradient-text">{t('projects.title_span')}</span>
                     </h2>
                     <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm">
-                        Fetched live from GitHub · sorted by most recently updated.
+                        {t('projects.desc')}
                     </p>
                 </div>
 
@@ -144,7 +146,7 @@ export default function Projects() {
                         />
                         <input
                             type="search"
-                            placeholder="Search repositories…"
+                            placeholder={t('projects.search')}
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm border border-slate-200 dark:border-slate-700
@@ -163,7 +165,7 @@ export default function Projects() {
                     >
                         {languages.map((l) => (
                             <option key={l} value={l}>
-                                {l === 'all' ? 'All languages' : l}
+                                {l === 'all' ? t('projects.all_langs') : l}
                             </option>
                         ))}
                     </select>
@@ -206,7 +208,7 @@ export default function Projects() {
                     <>
                         {filtered.length === 0 ? (
                             <p className="text-center text-slate-400 py-16">
-                                No repositories match your filters.
+                                {t('projects.no_match')}
                             </p>
                         ) : (
                             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -216,7 +218,7 @@ export default function Projects() {
                             </div>
                         )}
                         <p className="text-xs text-center text-slate-400 mt-6">
-                            {filtered.length} of {repos.length} repositories shown
+                            {t('projects.shown', { count: filtered.length, total: repos.length })}
                         </p>
                     </>
                 )}

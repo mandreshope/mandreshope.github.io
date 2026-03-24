@@ -1,25 +1,26 @@
+import { useTranslation } from 'react-i18next'
 import { SERVICES } from '../config'
 
 export default function Services() {
+    const { t } = useTranslation()
     return (
         <section id="services" className="py-24 px-4">
             <div className="max-w-6xl mx-auto">
                 {/* Heading */}
                 <div className="text-center mb-14">
-                    <p className="section-label">What I do</p>
+                    <p className="section-label">{t('services.label')}</p>
                     <h2 className="section-title">
-                        Services &amp;{' '}
-                        <span className="gradient-text">Experience</span>
+                        {t('services.title_start')}{' '}
+                        <span className="gradient-text">{t('services.title_span')}</span>
                     </h2>
                     <p className="text-slate-500 dark:text-slate-400 max-w-lg mx-auto text-sm">
-                        I work as a freelance engineer and consultant, helping teams build
-                        exceptional mobile and backend products.
+                        {t('services.desc')}
                     </p>
                 </div>
 
                 {/* Grid */}
                 <div className="grid sm:grid-cols-2 gap-6">
-                    {SERVICES.map((s) => (
+                    {SERVICES.map((s, idx) => (
                         <div
                             key={s.title}
                             className="card group p-7 flex flex-col gap-4"
@@ -30,10 +31,10 @@ export default function Services() {
                             </div>
                             <div>
                                 <h3 className="font-bold text-base mb-2 group-hover:text-indigo-500 transition-colors">
-                                    {s.title}
+                                    {t(`services.items.${idx}.title`)}
                                 </h3>
                                 <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                                    {s.description}
+                                    {t(`services.items.${idx}.description`)}
                                 </p>
                             </div>
                         </div>
@@ -44,14 +45,14 @@ export default function Services() {
                 <div className="mt-14 rounded-2xl glass p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6">
                     <div>
                         <h3 className="text-xl font-bold mb-1">
-                            Ready to build something great?
+                            {t('services.cta_title')}
                         </h3>
                         <p className="text-sm text-slate-500 dark:text-slate-400">
-                            Let&apos;s talk about your next project.
+                            {t('services.cta_desc')}
                         </p>
                     </div>
                     <a href="#contact" className="btn-primary shrink-0">
-                        Start a conversation →
+                        {t('services.cta_btn')}
                     </a>
                 </div>
             </div>

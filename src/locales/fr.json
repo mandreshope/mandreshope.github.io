@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "Disponible pour missions freelance & conseil",
+    "hi_im": "Bonjour, je suis",
+    "view_projects": "Voir les Projets",
+    "get_in_touch": "Me Contacter"
+  },
+  "config": {
+    "role": "Développeur Mobile · Développeur Backend · Passionné d'IA",
+    "bio": "Je crée des applications mobiles et des API backend, intègre des paiements (Stripe), et travaille sur des outils d'IA et d'automatisation. J'accorde une grande importance à l'architecture propre, à la performance et à la livraison de produits fiables."
+  },
+  "footer": {
+    "copyright": "Tous droits réservés",
+    "built_with": "Construit avec",
+    "by": "par"
+  },
+  "projects": {
+    "label": "Portfolio",
+    "title_start": "Projets",
+    "title_span": "Open Source",
+    "desc": "Récupéré en direct de GitHub · trié par date de mise à jour.",
+    "search": "Rechercher des dépôts…",
+    "all_langs": "Tous les langages",
+    "no_match": "Aucun dépôt ne correspond à vos filtres.",
+    "shown": "{{count}} sur {{total}} dépôts affichés"
+  },
+  "skills": {
+    "label": "Expertise",
+    "title_start": "Compétences &",
+    "title_span": "Technologies",
+    "stats": {
+      "years": "Années de code",
+      "apps": "Apps livrées",
+      "clients": "Clients satisfaits"
+    }
+  },
+  "services": {
+    "label": "Ce que je fais",
+    "title_start": "Services &",
+    "title_span": "Expérience",
+    "desc": "Je travaille en tant qu'ingénieur freelance et consultant, aidant les équipes à concevoir des produits mobiles et backend exceptionnels.",
+    "cta_title": "Prêt à construire quelque chose de grand ?",
+    "cta_desc": "Parlons de votre prochain projet.",
+    "cta_btn": "Démarrer une conversation →",
+    "items": {
+      "0": {
+        "title": "Développement d'Apps Mobiles",
+        "description": "Applications multiplateformes Flutter, React Native et natives iOS/Android avec Kotlin (Jetpack Compose) ou Swift. UI parfaite, offline-first et prêtes pour les stores."
+      },
+      "1": {
+        "title": "Développement Backend & API",
+        "description": "API REST évolutives avec NestJS, architecture propre, intégration de paiements Stripe, webhooks et authentification robuste."
+      },
+      "2": {
+        "title": "IA & Automatisation",
+        "description": "Outils basés sur l'IA, automatisation des workflows, pipelines de vision par ordinateur (assemblage de panoramas 360°) et intégrations LLM."
+      },
+      "3": {
+        "title": "Conseil Technique",
+        "description": "Revues d'architecture, audits de code, configuration CI/CD et mentorat. J'aide les équipes à livrer des produits fiables plus rapidement."
+      }
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "title_start": "Travaillons",
+    "title_span": "Ensemble",
+    "desc": "Vous avez un projet en tête ou souhaitez simplement dire bonjour ? Remplissez le formulaire ci-dessous.",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "whatsapp": "WhatsApp",
+    "connect": "Connectez-vous avec moi",
+    "based_in": "Basé à {{location}} · Disponible mondialement (à distance)",
+    "form": {
+      "name_label": "Votre Nom *",
+      "name_ph": "Jane Doe",
+      "email_label": "Votre Email *",
+      "email_ph": "jane@exemple.com",
+      "msg_label": "Message *",
+      "msg_ph": "Parlez-moi de votre projet…",
+      "btn": "Envoyer par Email",
+      "note": "Cela ouvre votre client de messagerie par défaut avec le message pré-rempli. Aucune donnée n'est stockée ou envoyée à un serveur externe."
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "skills": "Skills",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "available": "Available for freelance & consulting",
+    "hi_im": "Hi, I'm",
+    "view_projects": "View Projects",
+    "get_in_touch": "Get in Touch"
+  },
+  "config": {
+    "role": "Mobile Developer · Backend Developer · AI Enthusiast",
+    "bio": "I build mobile apps and backend APIs, integrate payments (Stripe), and work on AI tooling & automation. I care deeply about clean architecture, performance, and shipping reliable products."
+  },
+  "footer": {
+    "copyright": "All rights reserved",
+    "built_with": "Built with",
+    "by": "by"
+  },
+  "projects": {
+    "label": "Portfolio",
+    "title_start": "Open Source",
+    "title_span": "Projects",
+    "desc": "Fetched live from GitHub · sorted by most recently updated.",
+    "search": "Search repositories…",
+    "all_langs": "All languages",
+    "no_match": "No repositories match your filters.",
+    "shown": "{{count}} of {{total}} repositories shown"
+  },
+  "skills": {
+    "label": "Expertise",
+    "title_start": "Skills &",
+    "title_span": "Technologies",
+    "stats": {
+      "years": "Years Coding",
+      "apps": "Apps Shipped",
+      "clients": "Happy Clients"
+    }
+  },
+  "services": {
+    "label": "What I do",
+    "title_start": "Services &",
+    "title_span": "Experience",
+    "desc": "I work as a freelance engineer and consultant, helping teams build exceptional mobile and backend products.",
+    "cta_title": "Ready to build something great?",
+    "cta_desc": "Let's talk about your next project.",
+    "cta_btn": "Start a conversation →",
+    "items": {
+      "0": {
+        "title": "Mobile App Development",
+        "description": "Cross-platform Flutter, React Native apps and native iOS/Android apps with Kotlin (Jetpack Compose) or Swift. Pixel-perfect UI, offline-first, and app-store ready."
+      },
+      "1": {
+        "title": "Backend & API Development",
+        "description": "Scalable REST APIs with NestJS, clean architecture, Stripe payment integration, webhooks, and robust authentication."
+      },
+      "2": {
+        "title": "AI & Automation",
+        "description": "AI-powered tooling, workflow automation, computer-vision pipelines (360° panorama stitching), and LLM integrations."
+      },
+      "3": {
+        "title": "Technical Consulting",
+        "description": "Architecture reviews, code audits, CI/CD setup, and mentoring. I help teams ship reliable products faster."
+      }
+    }
+  },
+  "contact": {
+    "label": "Get in touch",
+    "title_start": "Let's",
+    "title_span": "Work Together",
+    "desc": "Have a project in mind or just want to say hello? Fill out the form below — it opens your email client with everything pre-filled.",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "whatsapp": "WhatsApp",
+    "connect": "Connect with me",
+    "based_in": "Based in {{location}} · Available globally (remote)",
+    "form": {
+      "name_label": "Your Name *",
+      "name_ph": "Jane Doe",
+      "email_label": "Your Email *",
+      "email_ph": "jane@example.com",
+      "msg_label": "Message *",
+      "msg_ph": "Tell me about your project…",
+      "btn": "Send via Email",
+      "note": "This opens your default email client with the message pre-filled. No data is stored or sent to any server."
+    }
+  }
+}

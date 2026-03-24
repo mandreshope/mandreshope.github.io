@@ -1,15 +1,17 @@
+import { useTranslation } from 'react-i18next'
 import { SKILLS } from '../config'
 
 export default function Skills() {
+    const { t } = useTranslation()
     return (
         <section id="skills" className="py-24 px-4 bg-slate-50/50 dark:bg-slate-900/30">
             <div className="max-w-6xl mx-auto">
                 {/* Heading */}
                 <div className="text-center mb-14">
-                    <p className="section-label">Expertise</p>
+                    <p className="section-label">{t('skills.label')}</p>
                     <h2 className="section-title">
-                        Skills &amp;{' '}
-                        <span className="gradient-text">Technologies</span>
+                        {t('skills.title_start')}{' '}
+                        <span className="gradient-text">{t('skills.title_span')}</span>
                     </h2>
                 </div>
 
@@ -50,9 +52,9 @@ export default function Skills() {
                 {/* Proficiency ribbon */}
                 <div className="mt-14 grid sm:grid-cols-3 gap-6 text-center">
                     {[
-                        { label: 'Years Coding', value: '5+' },
-                        { label: 'Apps Shipped', value: '10+' },
-                        { label: 'Happy Clients', value: '5+' },
+                        { label: t('skills.stats.years'), value: '5+' },
+                        { label: t('skills.stats.apps'), value: '10+' },
+                        { label: t('skills.stats.clients'), value: '5+' },
                     ].map((stat) => (
                         <div
                             key={stat.label}

@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { SITE_CONFIG } from '../config'
 import { GooglePlayIcon } from '../components/GooglePlayIcon'
 import { WhatsAppIcon } from '../components/WhatsAppIcon'
@@ -6,9 +7,10 @@ import { WhatsAppIcon } from '../components/WhatsAppIcon'
 const BASE = import.meta.env.BASE_URL
 
 export default function Hero() {
+    const { t } = useTranslation()
     return (
         <section
-            id="hero"
+            id="home"
             className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 pt-20"
             style={{ background: 'radial-gradient(ellipse 80% 60% at 50% -10%, rgba(245,184,0,0.08) 0%, transparent 70%)' }}
         >
@@ -47,33 +49,33 @@ export default function Hero() {
                 <div className="fade-up delay-100 inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm font-medium mb-8 shadow-sm"
                     style={{ color: '#F5B800' }}>
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    Available for freelance &amp; consulting
+                    {t('hero.available')}
                 </div>
 
                 {/* Name */}
                 <h1 className="fade-up delay-200 text-5xl md:text-7xl font-black tracking-tight mb-3 leading-none">
-                    Hi, I&apos;m{' '}
+                    {t('hero.hi_im')}{' '}
                     <span className="gradient-text">{SITE_CONFIG.name}</span>
                 </h1>
 
                 {/* Role */}
                 <p className="fade-up delay-300 text-xl md:text-2xl font-medium text-slate-500 dark:text-slate-400 mb-6">
-                    {SITE_CONFIG.role}
+                    {t('config.role')}
                 </p>
 
                 {/* Bio */}
                 <p className="fade-up delay-300 max-w-2xl mx-auto text-base md:text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-10">
-                    {SITE_CONFIG.bio}
+                    {t('config.bio')}
                 </p>
 
                 {/* CTA buttons */}
                 <div className="fade-up delay-400 flex flex-wrap items-center justify-center gap-4 mb-8">
                     <a href="#projects" className="btn-primary">
-                        View Projects
+                        {t('hero.view_projects')}
                     </a>
                     <a href="#contact" className="btn-ghost">
                         <Mail size={16} />
-                        Get in Touch
+                        {t('hero.get_in_touch')}
                     </a>
                 </div>
 

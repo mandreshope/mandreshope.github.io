@@ -1,9 +1,11 @@
 import { Github, Linkedin, Mail } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { SITE_CONFIG } from '../config'
 import { GooglePlayIcon } from './GooglePlayIcon'
 import { WhatsAppIcon } from './WhatsAppIcon'
 
 export default function Footer() {
+    const { t } = useTranslation()
     const year = new Date().getFullYear()
 
     const links = [
@@ -18,7 +20,7 @@ export default function Footer() {
         <footer className="border-t border-slate-200 dark:border-slate-800 py-10 px-4">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
                 <p className="text-sm text-slate-500 dark:text-slate-500">
-                    © {year} {SITE_CONFIG.name}. All rights reserved.
+                    © {year} {SITE_CONFIG.name}. {t('footer.copyright')}.
                 </p>
 
                 <div className="flex items-center gap-4">

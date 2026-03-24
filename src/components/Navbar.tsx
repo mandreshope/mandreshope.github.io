@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X, Languages } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import type { Theme } from '../types'
 import { SITE_CONFIG } from '../config'
 
@@ -8,20 +9,21 @@ interface NavbarProps {
     onToggle: () => void
 }
 
-const NAV_LINKS = [
-    { label: 'Home', href: '#hero' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Services', href: '#services' },
-    { label: 'Contact', href: '#contact' },
-]
-
 // Préfixe BASE_URL pour que les assets fonctionnent sur GitHub Pages (/portfolio/)
 const BASE = import.meta.env.BASE_URL
 
 export default function Navbar({ theme, onToggle }: NavbarProps) {
+    const { t, i18n } = useTranslation()
     const [scrolled, setScrolled] = useState(false)
     const [menuOpen, setMenuOpen] = useState(false)
+
+    const NAV_LINKS = [
+        { label: t('nav.home'), href: '#home' },
+        { label: t('nav.projects'), href: '#projects' },
+        { label: t('nav.skills'), href: '#skills' },
+        { label: t('nav.services'), href: '#services' },
+        { label: t('nav.contact'), href: '#contact' },
+    ]
 
     useEffect(() => {
         const handler = () => setScrolled(window.scrollY > 20)
@@ -42,7 +44,7 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
             <nav className="max-w-6xl mx-auto px-4 flex items-center justify-between">
 
                 {/* Logo PNG — BASE_URL pour GitHub Pages */}
-                <a href="#hero" aria-label="Home" className="flex items-center gap-2.5 group">
+                <a href="#home" aria-label="Home" className="flex items-center gap-2.5 group">
                     <img
                         src={`${BASE}mandreshope.png`}
                         alt="mandreshope logo"
@@ -66,6 +68,16 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
 
                 {/* Right controls */}
                 <div className="flex items-center gap-2">
+                    {/* Language toggle */}
+                    <button
+                        onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'fr' : 'en')}
+                        className="p-2 flex items-center gap-1 rounded-lg font-bold text-sm hover:bg-[#F5B800]/10 transition-colors"
+                        aria-label="Toggle language"
+                    >
+                        <Languages size={18} className="text-slate-600 dark:text-slate-300" />
+                        <span className="uppercase text-slate-700 dark:text-slate-200">{i18n.language === 'en' ? 'fr' : 'en'}</span>
+                    </button>
+
                     <button
                         onClick={onToggle}
                         aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
