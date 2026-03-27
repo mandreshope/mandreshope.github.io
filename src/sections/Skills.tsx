@@ -28,7 +28,7 @@ export default function Skills() {
                                 <span className="text-2xl" role="img" aria-label={group.category}>
                                     {group.icon}
                                 </span>
-                                <h3 className="font-bold text-sm uppercase tracking-wider text-indigo-500">
+                                <h3 className="font-bold text-sm uppercase tracking-wider text-[#F5B800]">
                                     {group.category}
                                 </h3>
                             </div>
@@ -40,7 +40,7 @@ export default function Skills() {
                                         key={skill}
                                         className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300"
                                     >
-                                        <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
+                                        <span className="w-1.5 h-1.5 rounded-full bg-[#F5B800] flex-shrink-0" />
                                         {skill}
                                     </li>
                                 ))}

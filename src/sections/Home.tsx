@@ -30,7 +30,7 @@ export default function Hero() {
                 <div className="fade-up flex justify-center mb-8">
                     <div className="relative">
                         <img
-                            src={`${BASE}profile.png`}
+                            src={`${BASE}profile.jpg`}
                             alt="Mandresy logo"
                             width={96}
                             height={96}

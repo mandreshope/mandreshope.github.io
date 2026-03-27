@@ -72,7 +72,7 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
                         alt="mandreshope logo"
                         width={36}
                         height={36}
-                        className="rounded-lg shadow-md shadow-[#F5B800]/20 group-hover:scale-105 transition-transform"
+                        className="shadow-md shadow-[#F5B800]/20 group-hover:scale-105 transition-transform"
                     />
                     <span className="font-extrabold text-base tracking-tight gradient-text hidden sm:inline">
                         {SITE_CONFIG.githubUsername}
