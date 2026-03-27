@@ -74,7 +74,7 @@ export default function Navbar({ theme, onToggle }: NavbarProps) {
                         height={36}
                         className="shadow-md shadow-[#F5B800]/20 group-hover:scale-105 transition-transform"
                     />
-                    <span className="font-extrabold text-base tracking-tight gradient-text hidden sm:inline">
+                    <span className="font-extrabold text-base tracking-tight hidden sm:inline text-slate-900 dark:text-white">
                         {SITE_CONFIG.githubUsername}
                     </span>
                 </a>

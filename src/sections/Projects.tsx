@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import {
-    Star, GitFork, ExternalLink, RefreshCw, Search, Pin, Clock,
+    Star, GitFork, ExternalLink, RefreshCw, Search, Pin, Clock, ChevronLeft, ChevronRight
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { useGitHubRepos } from '../hooks/useGitHubRepos'
@@ -93,6 +93,9 @@ export default function Projects() {
     const { repos, status, error, refetch } = useGitHubRepos(SITE_CONFIG.githubUsername)
     const [search, setSearch] = useState('')
     const [lang, setLang] = useState<string>('all')
+    const [page, setPage] = useState(1)
+
+    const ITEMS_PER_PAGE = 12
 
     // Collect unique languages
     const languages = useMemo(() => {
@@ -148,7 +151,10 @@ export default function Projects() {
                             type="search"
                             placeholder={t('projects.search')}
                             value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => {
+                                setSearch(e.target.value)
+                                setPage(1)
+                            }}
                             className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm border border-slate-200 dark:border-slate-700
                          bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50
                          placeholder:text-slate-400"
@@ -158,7 +164,10 @@ export default function Projects() {
                     {/* Language filter */}
                     <select
                         value={lang}
-                        onChange={(e) => setLang(e.target.value)}
+                        onChange={(e) => {
+                            setLang(e.target.value)
+                            setPage(1)
+                        }}
                         className="px-4 py-2.5 rounded-xl text-sm border border-slate-200 dark:border-slate-700
                        bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500/50
                        cursor-pointer"
@@ -211,11 +220,40 @@ export default function Projects() {
                                 {t('projects.no_match')}
                             </p>
                         ) : (
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {filtered.map((r) => (
-                                    <RepoCard key={r.id} repo={r} />
-                                ))}
-                            </div>
+                            <>
+                                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    {filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE).map((r) => (
+                                        <RepoCard key={r.id} repo={r} />
+                                    ))}
+                                </div>
+                                {Math.ceil(filtered.length / ITEMS_PER_PAGE) > 1 && (
+                                    <div className="flex items-center justify-center gap-4 mt-8">
+                                        <button
+                                            onClick={() => {
+                                                setPage(p => Math.max(1, p - 1))
+                                                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                                            }}
+                                            disabled={page === 1}
+                                            className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                                        >
+                                            <ChevronLeft size={20} className="text-slate-600 dark:text-slate-300" />
+                                        </button>
+                                        <span className="text-sm font-medium text-slate-600 dark:text-slate-300 min-w-[3rem] text-center">
+                                            {page} / {Math.ceil(filtered.length / ITEMS_PER_PAGE)}
+                                        </span>
+                                        <button
+                                            onClick={() => {
+                                                setPage(p => Math.min(Math.ceil(filtered.length / ITEMS_PER_PAGE), p + 1))
+                                                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+                                            }}
+                                            disabled={page === Math.ceil(filtered.length / ITEMS_PER_PAGE)}
+                                            className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                                        >
+                                            <ChevronRight size={20} className="text-slate-600 dark:text-slate-300" />
+                                        </button>
+                                    </div>
+                                )}
+                            </>
                         )}
                         <p className="text-xs text-center text-slate-400 mt-6">
                             {t('projects.shown', { count: filtered.length, total: repos.length })}
