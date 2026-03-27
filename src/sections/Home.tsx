@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { SITE_CONFIG } from '../config'
@@ -8,6 +9,33 @@ const BASE = import.meta.env.BASE_URL
 
 export default function Hero() {
     const { t } = useTranslation()
+
+    const fullPrefix = t('hero.hi_im') + ' '
+    const fullSuffix = SITE_CONFIG.name
+    const fullText = fullPrefix + fullSuffix
+
+    const [index, setIndex] = useState(0)
+    const [showCursor, setShowCursor] = useState(true)
+
+    useEffect(() => {
+        setIndex(0)
+        setShowCursor(true)
+    }, [fullText])
+
+    useEffect(() => {
+        if (index < fullText.length) {
+            const timeout = setTimeout(() => setIndex(i => i + 1), 60)
+            return () => clearTimeout(timeout)
+        } else {
+            const timeout = setTimeout(() => setShowCursor(false), 2000)
+            return () => clearTimeout(timeout)
+        }
+    }, [index, fullText.length])
+
+    const currentText = fullText.slice(0, index)
+    const prefixToRender = currentText.slice(0, fullPrefix.length)
+    const suffixToRender = currentText.slice(fullPrefix.length)
+
     return (
         <section
             id="home"
@@ -53,9 +81,10 @@ export default function Hero() {
                 </div>
 
                 {/* Name */}
-                <h1 className="fade-up delay-200 text-5xl md:text-7xl font-black tracking-tight mb-3 leading-none">
-                    {t('hero.hi_im')}{' '}
-                    <span className="gradient-text">{SITE_CONFIG.name}</span>
+                <h1 className="fade-up delay-200 text-5xl md:text-7xl font-black tracking-tight mb-3 leading-none min-h-[2.5em] md:min-h-[1.5em]">
+                    {prefixToRender}
+                    <span className="gradient-text">{suffixToRender}</span>
+                    <span className={`inline-block w-[5px] h-[0.9em] bg-black dark:bg-white ml-1 align-baseline rounded-sm transition-opacity duration-500 ${showCursor ? 'animate-pulse opacity-100' : 'opacity-0'}`}></span>
                 </h1>
 
                 {/* Role */}
