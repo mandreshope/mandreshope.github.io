@@ -9,7 +9,7 @@ export const SITE_CONFIG = {
     location: 'Madagascar 🇲🇬',
     bio: "I build mobile apps and backend APIs, integrate payments (Stripe), and work on AI tooling & automation. I care deeply about clean architecture, performance, and shipping reliable products.",
     github: 'https://github.com/mandreshope',       // ← update with your username
-    linkedin: 'https://linkedin.com/in/mandresy',   // ← update with your profile
+    linkedin: 'https://linkedin.com/in/mandreshope',   // ← update with your profile
     email: 'mandreshope@gmail.com',
     githubUsername: 'mandreshope',                  // ← used for the GitHub API
     googlePlay: 'https://play.google.com/store/apps/dev?id=6690241281899002210',
